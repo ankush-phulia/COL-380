@@ -1,0 +1,1 @@
+mpic++ hypersort.cpp -o3 -std=c++11 -Wall -o hypersort
