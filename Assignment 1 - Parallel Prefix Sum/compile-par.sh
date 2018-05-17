@@ -1,0 +1,1 @@
+g++ -fopenmp -std=c++11 -o2 -pthread -Wall par-prefix.cpp -o par
