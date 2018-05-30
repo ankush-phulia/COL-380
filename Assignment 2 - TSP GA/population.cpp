@@ -113,29 +113,14 @@ void population::getFitSum() {
 }
 
 void population::getElites(vector<string> &dest) {	
-	// sort(chromosomes_pop.begin(), chromosomes_pop.end(), compare_chrm(gDist));
-	// for (int i = 0; i < num_elites; i++) {
-	// 	dest[i] = chromosomes_pop[i];
-	// }
 	string e1 = chromosomes_pop[0], e2 = chromosomes_pop[0];
 	double best = chrm_fitnesses[0], best2 = chrm_fitnesses[0];
 	for (int i = 1; i < pop_size; i++){
-		//string ctemp = chromosomes_pop[i];
 		double ftemp = chrm_fitnesses[i];
 		if (ftemp > best) {
 			best = ftemp;
 			e1 = chromosomes_pop[i];
 		}
-		//if (ftemp >= best){
-			/*best2 = best;
-			best = ftemp;
-			e2 = e1;
-			e1 = ctemp;*/
-		//}
-		//else if (ftemp > best2){ //and < best
-		//	best2 = ftemp;
-		//	e2 = ctemp;
-		//}
 	}
 	dest[0] = e1;
 	for (int i = 1; i < pop_size; i++) {
@@ -231,22 +216,15 @@ void population::crossOver(string &P1, string &P2, string &C1, string &C2) {
 		}
 		strt = min(t1, t2);
 		end = max(t1, t2);
-		//cout << strt << ' ' << end << endl;
-		//cout << P1 << ' ' << P2 << endl;
 		string swap1 = P2.substr(strt, end - strt);
 		string swap2 = P1.substr(strt, end - strt);
 		C1 = P1.substr(0, strt) + swap1 + P1.substr(end, member_size - end);
 		C2 = P2.substr(0, strt) + swap2 + P2.substr(end, member_size - end);
-		//cout << swap1 << ' ' << swap2 << endl;
-		//cout << C1 << ' ' << C2 << endl;
 		//weed out duplicates
 		weed(C1, C2, swap1, swap2, member_size, strt, end);
-		//cout << C1 << ' ' << C2 << endl;
 		//repair the chromosome
 		repair(C1, C2, member_size, strt, end);
-		//cout << C1 << ' ' << C2 << endl;
 		repair(C2, C1, member_size, strt, end);
-		//cout << C1 << ' ' << C2 << endl;
 	}
 }
 
@@ -269,9 +247,7 @@ void population::nextGen() {
 	new_gen.resize(pop_size);
 	//get fittest chromosomes and add to new pop
 	getElites(new_gen);
-	//print(new_gen);
 	//select parents
-	//#pragma omp parallel for
 	for (int i = 2; i < pop_size; i+= 2) {
 		string P1 = selParent();
 		string P2 = selParent();
@@ -280,7 +256,6 @@ void population::nextGen() {
 		}
 		string C1, C2;
 		crossOver(P1, P2, C1, C2);
-		//cout << P1 << ' '<< P2 << '\n' << C1 << ' ' << C2 << endl;
 		mutate(C1);
 		mutate(C2);
 		new_gen[i] = C1;

@@ -42,8 +42,6 @@ void *downsweep(/*int id, int size, int stride*/void * args){
 }
 
 int main(int argc, char const *argv[]){
-
-	// vector<int> vec;
 	int element;
 
 	string infile = "input.txt";//get input file from command line
@@ -62,7 +60,7 @@ int main(int argc, char const *argv[]){
     	}
     }
 
-    //set up threads
+    // set up threads
     int d = atol(argv[1]);
     (d > n/2)?(d = n/2):(d=d);
     d = (pow(2,(int)log2(d)));
@@ -70,13 +68,13 @@ int main(int argc, char const *argv[]){
     int chunk = n/d;
     vector<pthread_t> threads (d);
     vector<struct bundle> threadargs (d);
-    
-    //set up timer, http://en.cppreference.com/w/cpp/chrono
+     
+    // set up timer, http://en.cppreference.com/w/cpp/chrono
     std::chrono::time_point<std::chrono::system_clock> start, end;
     start = std::chrono::system_clock::now();
 
-    //algorithm courtesy Guy Bleloch, nvidia GPU gems @ developer.nvidia.com
-    //upsweep
+    // algorithm courtesy Guy Bleloch, nvidia GPU gems @ developer.nvidia.com
+    // upsweep
     for (int stride = 1; stride < n; stride *= 2){
     	for (int i = 0; i<d; i++){
     		// threads[i] = thread(upsweep, i, max(chunk,stride*2), stride);
@@ -97,7 +95,6 @@ int main(int argc, char const *argv[]){
     // downsweep
     for (int stride = n/2; stride > 0; stride /= 2){
     	for (int i = 0; i<d; i++){
-    		// threads[i] = thread(downsweep, i, max(stride*2,chunk), stride);
     		threadargs[i].id = i;
 	        threadargs[i].size = max(chunk,stride*2);
 	        threadargs[i].stride = stride;
@@ -124,7 +121,7 @@ int main(int argc, char const *argv[]){
     std::cout << last << std::endl;
 
     f_out.open(outfile);
-    //md5 computation courtesy stack overflow
+    // md5 computation courtesy stack overflow
     unsigned char md5[MD5_DIGEST_LENGTH];
     int size = (output.length());
     unsigned char *temp = new unsigned char[size];
@@ -134,7 +131,7 @@ int main(int argc, char const *argv[]){
     f_out << "Time: " << elapsed_seconds.count() << std::endl;
     MD5(temp,size,md5);
 
-    //write to md5 array for printing
+    // write to md5 array for printing
     char buf[32];
     string s;
     for (int i=0; i<sizeof(md5); i++) {
