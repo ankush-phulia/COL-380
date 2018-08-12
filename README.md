@@ -1,4 +1,4 @@
-# Parallel Programming and Distributed Computing
+# Parallel-Distributed-Programming
 
 Projects done in COL 380 - Intro. to Parallel Programming and Distributed Computing, 2017
 
