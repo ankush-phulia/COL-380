@@ -4,20 +4,20 @@ population::population() {}
 
 population::~population() {}
 
-population::population(popultation &p) {
-    this->genes = p->genes;
-    this->gene_pool = p->gene_pool;
-    this->gX = p->gX;
-    this->gY = p->gY;
-    this->gDist = p->gDist;
-    this->chromosomes_pop = p->chromosomes_pop;
-    this->chrm_fitnesses = p->chrm_fitnesses;
-    this->pop_size = p->pop_size;
-    this->num_elites = p->num_elites;
-    this->member_size = p->member_size;
-    this->cross_prob = p->cross_prob;
-    this->mut_prob = p->mut_prob;
-    this->fitsum = p->fitsum;
+population::population(population &p) {
+    this->genes = p.genes;
+    this->gene_pool = p.gene_pool;
+    this->gX = p.gX;
+    this->gY = p.gY;
+    this->gDist = p.gDist;
+    this->chromosomes_pop = p.chromosomes_pop;
+    this->chrm_fitnesses = p.chrm_fitnesses;
+    this->pop_size = p.pop_size;
+    this->num_elites = p.num_elites;
+    this->member_size = p.member_size;
+    this->cross_prob = p.cross_prob;
+    this->mut_prob = p.mut_prob;
+    this->fitsum = p.fitsum;
 }
 
 population::population(string input_file, int pop_size, int num_elites,

@@ -11,7 +11,7 @@
 using namespace std;
 
 void getSol(string &in_file, int num_threads, string &sol, double &fitness) {
-    population tsp = population(in_file, INIT_POP, 2, CROSS_PROB, MUT_PROB);
+    population tsp(in_file, INIT_POP, 2, CROSS_PROB, MUT_PROB);
     int generations = 0;
     string best_sol = tsp.chromosomes_pop[0];
     double best_fitness = tsp.chrm_fitnesses[0];
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[]) {
 #pragma omp parallel
 #pragma omp for schedule(dynamic)
     for (int i = 0; i < num_threads; i += n) {
-        population tsp = population(in_file, INIT_POP, 2, CROSS_PROB, MUT_PROB);
+        population tsp(in_file, INIT_POP, 2, CROSS_PROB, MUT_PROB);
         int generations = 0;
         string best_sol = tsp.chromosomes_pop[0];
         double best_fitness = tsp.chrm_fitnesses[0];

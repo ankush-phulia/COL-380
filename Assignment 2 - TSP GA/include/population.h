@@ -10,7 +10,7 @@ using namespace std;
 class population {
    public:
     population();
-    population(popultaion &p);
+    population(population &p);
     population(string input_file, int pop_size, int num_elites,
                double cross_prob, double mut_prob);
     ~population();
