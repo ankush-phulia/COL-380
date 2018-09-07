@@ -1,5 +1,5 @@
 CC = g++
-CXXFLAGS = -std=c++11 -o2 -lssl -lcrypto -I include/
+CXXFLAGS = -std=c++11 -O2 -lssl -lcrypto -I include/
 PFLAGS = -fopenmp -pthread -Wall
 
 seq:
