@@ -1,1 +1,0 @@
-g++ -fopenmp -std=c++11 -o2 -pthread -Wall seq-prefix.cpp -o par
